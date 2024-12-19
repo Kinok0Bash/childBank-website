@@ -1,4 +1,4 @@
-const API_URL = "https://uwu-dewcrew.ru/api";
+const API_URL = "https://uwu-devcrew.ru/api";
 const AUTH_REFRESH = "/auth/refresh";
 const AUTH_LOGIN = "/auth/authorization";
 const AUTH_REG = "/auth/registration";
