@@ -34,19 +34,44 @@ const Menu = () => {
         },
     ]
 
+    const handleDownload = async (path, name) => {
+        try {
+            const response = await fetch(path);
+            if (!response.ok) {
+                throw new Error("Ошибка при получении файла");
+            }
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+
+            // Создаём временную ссылку для скачивания
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = name;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // Освобождаем память
+            window.URL.revokeObjectURL(url);
+        } catch (error) {
+            console.error("Ошибка загрузки файла:", error);
+        }
+    };
+
     return (
         <section className="menu">
             <ul className="menu__list">
                 {menuItems.map((item) => (
-                    <li className="menu__item">
+                    <li className="menu__item" key={item.name}>
                         {item.isDownload ? (
-                            <a href={item.path} download>
+                            <button className="menu__button" onClick={() => handleDownload(item.path, `${item.name}.txt`)}>
                                 <Paragraph level={2} type={'default'}>{item.name}</Paragraph>
-                            </a>
+                            </button>
                         ) : (
-                            <Link to={item.path}>
-                                <Paragraph level={2} type={'default'}>{item.name}</Paragraph>
-                            </Link>
+                            <Paragraph level={2} type={'default'}>
+                                {item.name}
+                            </Paragraph>
                         )}
                     </li>
                 ))}
