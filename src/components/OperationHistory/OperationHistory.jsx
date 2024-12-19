@@ -16,9 +16,14 @@ const OperationHistory = ({type = 'LAST'}) => {
         fetch();
     }, [])
 
+    const transactionsToDisplay = 
+        type === 'LAST' 
+            ? [...AccountStore.transactions].reverse().slice(0, 4) 
+            : [...AccountStore.transactions].reverse();
+
     return (
         <ul className={'operationHistory'}>
-                {[...AccountStore.transactions].reverse().map((item) => (
+                {transactionsToDisplay.map((item) => (
                     <HistoryItem {...item} />
                 ))}
         </ul>

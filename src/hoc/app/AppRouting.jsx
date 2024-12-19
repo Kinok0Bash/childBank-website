@@ -20,7 +20,7 @@ const AppRouting = () => {
                     <Route path="/resultPayment" element={<OperationResultPage />}/>
                     <Route path={"/profile"} element={<ProfilePage/>} />
                     <Route path={'/pay'} element={<PayPage/>}/>
-                    <Route path="/profile/new-child" element={<RegistrationPage type={'CHILD'}/>}/>
+                    <Route path={"/profile/new-child"} element={<RegistrationPage type={'CHILD'}/>}/>
                     <Route path={'/childAccount'} element={<ChildAccountPage />}/>
                     <Route path={'/childTransfer'} element={<ChildTransferPage />}/>
                     <Route path={'/history'} element={<HistoryPage />}/>

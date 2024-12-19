@@ -13,7 +13,7 @@ const RegistrationPage = ({type = 'PARENT'}) => {
     console.log(type);
 
     const fcs = useInput('',{isEmpty: true,maxLength: 40,isFcs: true});
-    const birthDate = useInput('',{isEmpty: true,maxLength: 20});
+    const birthDate = useInput('',{isEmpty: true,maxLength: 20,isDate: true});
     const city = useInput('',{isEmpty: true,maxLength: 20});
     const username = useInput('',{isEmpty: true,maxLength: 20});
     const password = useInput('',{isEmpty: true, minLength: 8, maxLength: 20});

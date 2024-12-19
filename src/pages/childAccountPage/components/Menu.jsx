@@ -19,15 +19,18 @@ const Menu = () => {
         },
         {
             name: "Отчет. Все транзакции",
-            path: `${API_URL}/reports/transactions/download`
+            path: `${API_URL}/reports/transactions/download`,
+            isDownload: true
         },
         {
             name: "Отчет. Суммы по магазинам",
-            path: `${API_URL}/reports/shops/download`
+            path: `${API_URL}/reports/shops/download`,
+            isDownload: true
         },
         {
             name: "Отчет. Все ограничения",
-            path: `${API_URL}/reports/limits/download`
+            path: `${API_URL}/reports/limits/download`,
+            isDownload: true
         },
     ]
 
@@ -36,9 +39,15 @@ const Menu = () => {
             <ul className="menu__list">
                 {menuItems.map((item) => (
                     <li className="menu__item">
-                        <Link to={item.path}>
-                            <Paragraph level={2} type={'default'}>{item.name}</Paragraph>
-                        </Link>
+                        {item.isDownload ? (
+                            <a href={item.path} download>
+                                <Paragraph level={2} type={'default'}>{item.name}</Paragraph>
+                            </a>
+                        ) : (
+                            <Link to={item.path}>
+                                <Paragraph level={2} type={'default'}>{item.name}</Paragraph>
+                            </Link>
+                        )}
                     </li>
                 ))}
             </ul>

@@ -28,17 +28,24 @@ const OperationResultPage = () => {
                             Операция прошла успешно
                         </Paragraph>
                     </>
-                ) :
+                ) : TransactionStore.transactionStatus === 'FORBIDDEN' ?
                 (
                     <>
                         <img src={declinedImg} alt="Отклонено"/>
                         <Title level={3} type={'default'}>Отклонено</Title>
                         <Paragraph level={4} type={'default'}>
-                            Родители поставили тебе ограничение <br />на покупку. Ты не можешь оплатить
-                            покупку,<br/>пока они не уберут товар из запрещенных
+                            Родители поставили тебе ограничение <br />на покупку. Ты не можешь оплатить покупку, <br/>пока они не уберут товар из запрещенных
                         </Paragraph>
                     </>
 
+                ) : (
+                    <>
+                    <img src={declinedImg} alt="Отклонено"/>
+                        <Title level={3} type={'default'}>Отклонено</Title>
+                        <Paragraph level={4} type={'default'}>
+                            У тебя на счету не достаточно средств <br />на покупку. Попроси родителей положить тебе <br/>денег на счет
+                        </Paragraph>
+                    </>
                 )
 
             }
