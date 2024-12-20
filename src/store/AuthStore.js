@@ -8,6 +8,7 @@ import {
     AUTH_REG,
     PARENT_NEWCHILD
 } from "../constants/endpoints/endpointConst.js";
+import AccountStore from "./AccountStore..js";
 
 class AuthStore {
     isAuth;
@@ -31,6 +32,7 @@ class AuthStore {
                 this.isAuth = true;
                 this.userData = response.data.user;
             });
+            AccountStore.clear()
         } catch(err) {
             errorMessage = err.response?.data?.message;
         } finally {
@@ -70,7 +72,7 @@ class AuthStore {
         } finally {
             this.isLoading = false;
         }
-        return errorMessage || response;
+        return errorMessage || null;
     };
 
     registrationChild = async ({...data}) => {
@@ -85,7 +87,7 @@ class AuthStore {
         } finally {
             this.isLoading = false;
         }
-        return errorMessage || response;
+        return errorMessage || null;
     };
 
     checkAuth = async () => {

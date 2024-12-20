@@ -3,7 +3,7 @@ import './HomePage.scss';
 import {useEffect} from "react";
 import AuthStore from "../../store/AuthStore.js";
 import AccountStore from "../../store/AccountStore..js";
-import Account from "/src/components/Account/Account.jsx";
+import Account from "../../components/Account/Account.jsx";
 import OperationHistory from "../../components/OperationHistory/OperationHistory.jsx";
 import Button from "../../components/Button/Button.jsx";
 import Paragraph from "../../components/Paragraph/Paragraph.jsx";
@@ -22,6 +22,7 @@ const HomePage = () => {
         }
         await LoaderStore.hideLocalLoader();
     }
+
     useEffect(() => {
         const fetch = async () => {
             if(AuthStore.userData.role === 'PARENT') {
@@ -30,7 +31,7 @@ const HomePage = () => {
                 await AccountStore.getBalanceChild();
             }
         }
-
+        console.log(AccountStore.childBalance)
         fetch();
     }, [])
 
@@ -52,10 +53,12 @@ const HomePage = () => {
             </div>
                 <div className={'HomePage__buttons'}>
                     {AuthStore.userData.role === 'PARENT' ?
-                        (AuthStore.userData.isGetKid && <>
-                            <Button type={'main'} style={'dark'} className={'HomePage__button'} onClick={() => nav('/childAccount')}>
-                                <Paragraph type={'white'} level={2}>Перейти к счету ребенка</Paragraph>
-                            </Button>
+                        (<>
+                            {AuthStore.userData.isGetKid && 
+                                <Button type={'main'} style={'dark'} className={'HomePage__button'} onClick={() => nav('/childAccount')}>
+                                    <Paragraph type={'white'} level={2}>Перейти к счету ребенка</Paragraph>
+                                </Button>
+                            }
                             <Button type={'main'} style={'green'} className={'HomePage__button'} onClick={handlerSalary}>
                                 <Paragraph type={'white'} level={2}>Получить зарплату</Paragraph>
                             </Button>

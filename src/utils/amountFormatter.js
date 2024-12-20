@@ -1,4 +1,6 @@
 const amountFormatter = (value) => {
+    console.log("Input to amountFormatter:", value);
+
     // Преобразуем в строку, удаляем лишние пробелы и проверяем валидность
     const sanitizedAmount = String(value).replace(/\s+/g, '').trim();
 

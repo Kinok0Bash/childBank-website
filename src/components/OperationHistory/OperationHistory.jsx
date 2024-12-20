@@ -8,16 +8,16 @@ import AuthStore from "../../store/AuthStore.js";
 
 const OperationHistory = ({type = 'LAST'}) => {
     useEffect(() => {
-        if (AuthStore.userData.isGetKid === true) {
-        async function fetch() {
-            LoaderStore.showLocalLoader();
-            if(type === 'LAST') await AccountStore.getLastOperations();
-            else await AccountStore.getAllOperations();
-            LoaderStore.hideLocalLoader();
-        }
-        fetch();
-        } else {
+        if (AuthStore.userData.role === 'PARENT' && AuthStore.userData.isGetKid !== true) {
             AccountStore.transactions = []
+        } else {
+            var res;
+            async function fetch() {
+                LoaderStore.showLocalLoader();
+                await AccountStore.getAllOperations()
+                LoaderStore.hideLocalLoader()
+            }
+            fetch();
         }
     }, [type])
 

@@ -1,5 +1,5 @@
-const API_URL = "https://uwu-devcrew.ru/api";
-// const API_URL = "http://localhost:8080/api";
+// const API_URL = "https://uwu-devcrew.ru/api";
+const API_URL = "http://localhost:8080/api";
 
 const AUTH_REFRESH = "/auth/refresh";
 const AUTH_LOGIN = "/auth/authorization";

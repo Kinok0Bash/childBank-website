@@ -81,5 +81,11 @@ class AccountStore {
         }
         return errorMessage || response.data.message;
     }
+
+    clear = async () => {
+        this.parentBalance = 0;
+        this.childBalance = 0;
+        this.transactions = [];
+    }
 }
 export default new AccountStore();

@@ -8,8 +8,10 @@ import Input from "../../components/Input/Input.jsx";
 import Button from "../../components/Button/Button.jsx";
 import {useInput} from "../../hooks/inputHooks.js";
 import Paragraph from "../../components/Paragraph/Paragraph.jsx";
+import AccountStore from "../../store/AccountStore..js";
 const RegistrationPage = ({type = 'PARENT'}) => {
     const navigate = useNavigate();
+    const [serverResponse,setServerResponse] = useState(null);
     console.log(type);
 
     const fcs = useInput('',{isEmpty: true,maxLength: 40,isFcs: true});
@@ -20,6 +22,7 @@ const RegistrationPage = ({type = 'PARENT'}) => {
 
     const submitHandler = async (e,inputs) => {
         LoaderStore.showLocalLoader();
+        var res, res1;
 
         e.preventDefault();
         let correctFlag = true;
@@ -39,10 +42,12 @@ const RegistrationPage = ({type = 'PARENT'}) => {
             city: inputs.city.value
         }
         if(type === 'PARENT') {
-            await AuthStore.registration(data);
+            res = await AuthStore.registration(data);
+            res1 = await AccountStore.getBalanceParent()
         } else {
-            await AuthStore.registrationChild(data);
+            res = await AuthStore.registrationChild(data);
         }
+        setServerResponse(res);
 
         LoaderStore.hideLocalLoader();
     }
