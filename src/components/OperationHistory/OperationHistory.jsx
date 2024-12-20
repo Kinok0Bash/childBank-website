@@ -14,12 +14,12 @@ const OperationHistory = ({type = 'LAST'}) => {
             LoaderStore.hideLocalLoader();
         }
         fetch();
-    }, [])
+    }, [type])
 
     const transactionsToDisplay = 
         type === 'LAST' 
-            ? [...AccountStore.transactions].reverse().slice(0, 4) 
-            : [...AccountStore.transactions].reverse();
+            ? [...AccountStore.transactions].slice(0, 4) 
+            : [...AccountStore.transactions];
 
     return (
         <ul className={'operationHistory'}>

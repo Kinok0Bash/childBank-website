@@ -69,9 +69,9 @@ const Menu = () => {
                                 <Paragraph level={2} type={'default'}>{item.name}</Paragraph>
                             </button>
                         ) : (
-                            <Paragraph level={2} type={'default'}>
-                                {item.name}
-                            </Paragraph>
+                            <Link to={item.path}>
+                                <Paragraph level={2} type={'default'}>{item.name}</Paragraph>
+                            </Link>
                         )}
                     </li>
                 ))}
