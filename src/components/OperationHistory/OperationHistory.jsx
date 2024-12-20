@@ -4,9 +4,11 @@ import {useEffect} from "react";
 import AccountStore from "../../store/AccountStore..js";
 import HistoryItem from "./HistoryItem.jsx";
 import LoaderStore from "../../store/LoaderStore.js";
+import AuthStore from "../../store/AuthStore.js";
 
 const OperationHistory = ({type = 'LAST'}) => {
     useEffect(() => {
+        if (AuthStore.userData.isGetKid === true) {
         async function fetch() {
             LoaderStore.showLocalLoader();
             if(type === 'LAST') await AccountStore.getLastOperations();
@@ -14,6 +16,9 @@ const OperationHistory = ({type = 'LAST'}) => {
             LoaderStore.hideLocalLoader();
         }
         fetch();
+        } else {
+            AccountStore.transactions = []
+        }
     }, [type])
 
     const transactionsToDisplay = 
