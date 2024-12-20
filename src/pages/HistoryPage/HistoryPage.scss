@@ -15,12 +15,14 @@
   }
   &__accept {
     width: 100%;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     overflow: hidden;
   }
   .operationHistory {
+    flex-grow: 1;
     width: 100%;
+    margin-bottom: 80px;
   }
 
 
